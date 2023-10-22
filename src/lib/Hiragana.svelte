@@ -22,6 +22,8 @@
         {/if}
 
         <img src="images/hiragana/{letter.toLowerCase()}.png" alt={letter}  />
+
+        <div class="background-light" ></div>
     </div>
 
 
@@ -30,12 +32,11 @@
 <style>
 
     .letter-container {
-        border: 1px solid white;
         position: absolute;
         width: 100%;
         height: 100%;
         bottom: 3.125rem;
-        left: 0;
+        left: -1px;
         z-index: 10;
     }
 
@@ -46,9 +47,20 @@
 
     .image-container {
         position: relative;
-        border: 1px solid red;
+       
         width: 3.125rem;
         height: 3.125rem;
+    }
+
+    .background-light {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid red;
+        background-color: rgba(255, 255, 255, 0.75);
+        z-index: -10;
+        border-radius: 100%;
     }
 
 </style>

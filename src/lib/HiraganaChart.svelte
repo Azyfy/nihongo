@@ -1,10 +1,24 @@
 <script>
     import Hiragana from "./Hiragana.svelte";
-    import { VOWELS } from "../constants/letters";
+    import { VOWELS, CHART } from "../constants/letters";
+
+    console.log("CHART", CHART)
 </script>
 
 <div class="chart-container" >
+    {#each CHART as array}
     <div class="chart-row" >
+        {#each array as letter}
+            {#if letter}
+                <Hiragana letter="{letter}" />
+            {:else}
+                <div class="empty" ></div>
+            {/if}
+        {/each}
+    </div>
+    {/each}
+
+    <!-- <div class="chart-row" >
         {#each VOWELS as vowel}
             <Hiragana letter="{vowel}" />
         {/each}
@@ -36,7 +50,7 @@
                 <Hiragana letter="{'t' + vowel}" />
             {/if}
         {/each}
-    </div>
+    </div> -->
 </div>
 
 
@@ -50,6 +64,11 @@
     .chart-row {
         display: flex;
         gap: 25px;
+    }
+
+    .empty {
+        width: 50px;
+        height: 50px;
     }
 
 </style>
