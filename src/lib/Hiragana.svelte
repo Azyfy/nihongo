@@ -1,7 +1,10 @@
 <script>
     export let letter
+    export let bg = false 
 
     let show = false
+    
+    $: src = `images/hiragana/${letter.toLowerCase()}.png`
 
     function showLetter() {
         show = true
@@ -12,7 +15,6 @@
     }
 </script>
 
-
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="image-container" on:mouseenter={showLetter} on:mouseleave={hideLetter} >
         {#if show}
@@ -21,9 +23,11 @@
         </div>
         {/if}
 
-        <img src="images/hiragana/{letter.toLowerCase()}.png" alt={letter}  />
+        <img {src} alt={letter}  />
 
-        <div class="background-light" ></div>
+        {#if bg}
+            <div class="background-light" ></div>
+        {/if}
     </div>
 
 
@@ -61,6 +65,10 @@
         background-color: rgba(255, 255, 255, 0.75);
         z-index: -10;
         border-radius: 100%;
+    }
+
+    .test {
+        background-color: black;
     }
 
 </style>
