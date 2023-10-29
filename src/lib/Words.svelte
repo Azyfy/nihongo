@@ -35,7 +35,7 @@
 <div class="words" >
     {#if $WordsStore.length > 0}
         <div class="word-container" >
-            <div class="word-card" on:click={changeMode} >
+            <div class="word-card" on:click|self={changeMode} >
                 <Word word="{currentWord}" {mode} />
             </div>
         </div>

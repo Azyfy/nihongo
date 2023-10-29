@@ -11,7 +11,7 @@
     <div class="word-container" >
         {#if mode === "hiragana"}
             {#each romajiWord  as romaji}
-                <Hiragana letter={romaji} />
+                <Hiragana letter={romaji} dark="dark" />
             {/each}
         {:else if mode === "english"}
             <p>{word.english}</p>

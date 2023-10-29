@@ -1,6 +1,7 @@
 <script>
     export let letter
     export let bg = false 
+    export let dark = ""
 
     let show = false
     
@@ -18,7 +19,7 @@
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="image-container" on:mouseenter={showLetter} on:mouseleave={hideLetter} >
         {#if show}
-        <div class="letter-container" >
+        <div class="letter-container {dark}" >
             <p>{letter}</p>
         </div>
         {/if}
@@ -67,8 +68,8 @@
         border-radius: 100%;
     }
 
-    .test {
-        background-color: black;
+    .dark {
+        color: black;
     }
 
 </style>
