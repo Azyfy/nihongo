@@ -28,7 +28,7 @@
 
     .chart-row {
         display: flex;
-        gap: 25px;
+        gap: 15px;
     }
 
     .empty {
