@@ -22,7 +22,7 @@
     }
 
     function changeMode() {
-        mode = "english"
+        mode = mode === "hiragana" ? "english" : "hiragana"
     }
 
     function resetMode() {
@@ -87,6 +87,10 @@
     .left {
         height: 90%;
         width: 50%;
+    }
+
+    .left:hover, .right:hover {
+        cursor: pointer; 
     }
 
     .right {
