@@ -6,6 +6,13 @@
 
   import Layout from "./lib/Layout.svelte";
 
+  // Disabling the browser back button since the app doesnt use routes
+  window.history.pushState(null, null, document.URL);
+  window.addEventListener('popstate', function () {
+    window.history.pushState(null, null, document.URL);
+    $ModuleStore = "Home" 
+  });
+
   onMount(async () => {
     const data = await getAllWords()
     WordsStore.set(data)
