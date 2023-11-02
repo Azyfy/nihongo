@@ -1,10 +1,10 @@
 <script>
-  import Hiragana from "./Hiragana.svelte";
+    import Hiragana from "./Hiragana.svelte";
 
-   export let word 
-   export let mode = "hiragana"
+    export let word 
+    export let mode = "hiragana"
 
-   $: romajiWord = word ? word.romajiC.split(" ") : ""
+    $: romajiWord = word ? word.romajiC.split(" ") : ""
 </script>
 
 {#if word}

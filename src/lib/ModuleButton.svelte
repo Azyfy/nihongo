@@ -1,5 +1,5 @@
 <script>
-  import { ModuleStore } from "../stores";
+    import { ModuleStore } from "../stores";
 
     export let moduleName
 

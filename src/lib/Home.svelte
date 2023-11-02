@@ -1,5 +1,5 @@
 <script>
-  import ModuleButton from "./ModuleButton.svelte";
+    import ModuleButton from "./ModuleButton.svelte";
 
 </script>
 

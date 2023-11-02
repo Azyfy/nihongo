@@ -1,6 +1,6 @@
 <script>
     import { WordsStore } from "../stores";
-  import { IconSwap } from "./icons";
+    import { IconSwap } from "./icons";
 
     export let word = null
 
