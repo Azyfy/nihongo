@@ -69,9 +69,10 @@
         background-color: white;
         position: relative;
         z-index: 10;
+        overflow: auto;
         border-radius: 1rem;
+        width: 50vw;
         height: 50vw;
-        width: 250px;
         padding: 25px;
         display: flex;
         align-items: center;
