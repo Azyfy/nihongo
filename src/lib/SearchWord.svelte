@@ -9,7 +9,7 @@
     let searchWord = ""
 
     function searchForWord(e) {
-        word = $WordsStore.find(el => el[searchLanguage].split(" ").join("") === e.target.value.toLowerCase())
+        word = $WordsStore.find(el => el[searchLanguage] === e.target.value.toLowerCase())
     }
 
     function switchLanguage() {

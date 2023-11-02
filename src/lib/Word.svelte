@@ -4,7 +4,7 @@
    export let word 
    export let mode = "hiragana"
 
-   $: romajiWord = word ? word.romaji.split(" ") : ""
+   $: romajiWord = word ? word.romajiC.split(" ") : ""
 </script>
 
 {#if word}
