@@ -1,7 +1,9 @@
 <script>
     import { WordsStore } from "../stores";
-
+    import SearchWord from "./SearchWord.svelte";
     import Word from "./Word.svelte";
+
+    let searchedWord = null
 
     let index = 0
 
@@ -29,7 +31,7 @@
         mode = "hiragana"
     }
 
-    $: currentWord = $WordsStore[index]
+    $: currentWord = searchedWord ? searchedWord : $WordsStore[index]
 </script>
 
 <div class="words" >
@@ -46,6 +48,8 @@
         <div on:click={next} class="right" ></div>
     </div>
 </div>
+
+<SearchWord bind:word={searchedWord} />
 
 
 <style>
@@ -97,5 +101,4 @@
         height: 90%;
         width: 50%;
     }
-
 </style>
