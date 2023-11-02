@@ -43,12 +43,13 @@
         bottom: 3.125rem;
         left: -1px;
         z-index: 10;
+        text-align: center;
     }
 
     img {
         width: 100%;
         height: 100%;
-        }
+    }
 
     .image-container {
         position: relative;

@@ -2,12 +2,14 @@
     import { WordsStore } from "../stores";
     import SearchWord from "./SearchWord.svelte";
     import Word from "./Word.svelte";
+    import { IconSwap } from "./icons";
 
     let searchedWord = null
 
     let index = 0
 
     let mode = "hiragana"
+    let modeOption = mode
 
     function previous() {
        if(index > 0) {
@@ -27,14 +29,23 @@
         mode = mode === "hiragana" ? "english" : "hiragana"
     }
 
+    function swapMode() {
+        modeOption = modeOption === "hiragana" ? "english" : "hiragana"
+        mode = modeOption
+    }
+
     function resetMode() {
-        mode = "hiragana"
+        mode = modeOption
     }
 
     $: currentWord = searchedWord ? searchedWord : $WordsStore[index]
 </script>
 
 <div class="words-component" >
+    <div class="mode-swap" on:click={swapMode} >
+        <span class="mode-icon" ><IconSwap /></span>
+    </div>
+
     <div class="words" >
         {#if $WordsStore.length > 0}
             <div class="word-container" >
@@ -114,4 +125,14 @@
         height: 90%;
         width: 50%;
     }
+
+    .mode-swap {
+        display: flex;
+        justify-content: end;
+    }
+
+    .mode-icon:hover {
+       cursor: pointer;
+    }
+
 </style>
