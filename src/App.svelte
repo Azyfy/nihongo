@@ -47,18 +47,24 @@
     padding: 2rem;
     overflow: hidden;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
 
   .nav {
     position: sticky;
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
     bottom: 0;
-    border-top: 1px solid white;
-    background-color: #242424;
-    padding: 5px;
+    border-top: 1px solid rgb(205, 205, 205);
   }
 
   .home-icon {
-    font-size: 25px;
+    font-size: 1.5625rem;
   }
 
   .home-icon:hover {

@@ -69,7 +69,6 @@
         background-color: white;
         position: relative;
         z-index: 10;
-        overflow: auto;
         border-radius: 1rem;
         width: 50vw;
         height: 50vw;
@@ -77,6 +76,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow: auto;
+        scrollbar-width: none; /* For Firefox */
+        -ms-overflow-style: none;
+    }
+
+    .word-card::-webkit-scrollbar {
+        width: 0; /* Chrome, Safari */
     }
 
     .slide {
