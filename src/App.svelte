@@ -48,9 +48,7 @@
     overflow: hidden;
     overflow-y: auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
     gap: 1rem;
   }
 
@@ -61,6 +59,7 @@
     align-content: flex-end;
     bottom: 0;
     border-top: 1px solid rgb(205, 205, 205);
+    background-color: #242424;
   }
 
   .home-icon {

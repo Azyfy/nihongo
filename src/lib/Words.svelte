@@ -34,25 +34,35 @@
     $: currentWord = searchedWord ? searchedWord : $WordsStore[index]
 </script>
 
-<div class="words" >
-    {#if $WordsStore.length > 0}
-        <div class="word-container" >
-            <div class="word-card" on:click|self={changeMode} >
-                <Word word="{currentWord}" {mode} />
+<div class="words-component" >
+    <div class="words" >
+        {#if $WordsStore.length > 0}
+            <div class="word-container" >
+                <div class="word-card" on:click|self={changeMode} >
+                    <Word word="{currentWord}" {mode} />
+                </div>
             </div>
+        {/if}
+        
+        <div class="slide" >
+            <div on:click={previous} class="left" ></div>
+            <div on:click={next} class="right" ></div>
         </div>
-    {/if}
-    
-    <div class="slide" >
-        <div on:click={previous} class="left" ></div>
-        <div on:click={next} class="right" ></div>
     </div>
+    
+    <SearchWord bind:word={searchedWord} />
 </div>
-
-<SearchWord bind:word={searchedWord} />
 
 
 <style>
+    .words-component {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+        height: 100%;
+    }
+
     .words {
         height: 100%;
         position: relative;

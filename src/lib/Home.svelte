@@ -12,8 +12,8 @@
     .module-btn-container {
         display: flex;
         flex-direction: column;
-        gap: 20px;
         justify-content: center;
+        gap: 1.25rem;
         height: 100%;
     }
 </style>
