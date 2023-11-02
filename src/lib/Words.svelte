@@ -94,10 +94,6 @@
         width: 50%;
     }
 
-    .left:hover, .right:hover {
-        cursor: pointer; 
-    }
-
     .right {
         height: 90%;
         width: 50%;
