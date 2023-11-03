@@ -39,9 +39,9 @@
     }
 
     function swapRomajiMode() {
-        modeOption = modeOption === "romaji" ? "hiragana" : "romaji"
-        japaneseMode = modeOption
-        mode = modeOption
+        japaneseMode = japaneseMode === "romaji" ? "hiragana" : "romaji"
+        modeOption = japaneseMode
+        mode = japaneseMode
     }
 
     function resetMode() {
