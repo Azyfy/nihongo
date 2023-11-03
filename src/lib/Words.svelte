@@ -2,14 +2,15 @@
     import { WordsStore } from "../stores";
     import SearchWord from "./SearchWord.svelte";
     import Word from "./Word.svelte";
-    import { IconSwap } from "./icons";
+    import { IconEye, IconEyeSlash, IconSwap } from "./icons";
 
     let searchedWord = null
 
     let index = 0
     $: currentPosition = index + 1
 
-    let mode = "hiragana"
+    let japaneseMode = "hiragana"
+    let mode = japaneseMode
     let modeOption = mode
 
     $: currentWord = searchedWord ? searchedWord : $WordsStore[index]
@@ -29,11 +30,17 @@
     }
 
     function changeMode() {
-        mode = mode === "hiragana" ? "english" : "hiragana"
+        mode = mode === "english" ? japaneseMode : "english"
     }
 
     function swapMode() {
-        modeOption = modeOption === "hiragana" ? "english" : "hiragana"
+        modeOption = modeOption === "english" ? japaneseMode : "english"
+        mode = modeOption
+    }
+
+    function swapRomajiMode() {
+        modeOption = modeOption === "romaji" ? "hiragana" : "romaji"
+        japaneseMode = modeOption
         mode = modeOption
     }
 
@@ -59,7 +66,14 @@
 </script>
 
 <div class="words-component" >
-    <div class="mode-swap over" >
+    <div class="mode-options over" >
+        <span class="mode-icon" on:click={swapRomajiMode} >
+            {#if japaneseMode === "romaji"}
+                <IconEyeSlash></IconEyeSlash>
+            {:else}
+                <IconEye></IconEye>
+            {/if}
+        </span>
         <span class="mode-icon" on:click={swapMode} ><IconSwap /></span>
     </div>
 
@@ -146,9 +160,10 @@
         width: 50%;
     }
 
-    .mode-swap {
+    .mode-options {
         display: flex;
         justify-content: end;
+        gap: 1rem;
     }
 
     .mode-icon:hover {
