@@ -7,9 +7,12 @@
     let searchedWord = null
 
     let index = 0
+    $: currentPosition = index + 1
 
     let mode = "hiragana"
     let modeOption = mode
+
+    $: currentWord = searchedWord ? searchedWord : $WordsStore[index]
 
     function previous() {
        if(index > 0) {
@@ -38,15 +41,29 @@
         mode = modeOption
     }
 
-    $: currentWord = searchedWord ? searchedWord : $WordsStore[index]
+    function selectPage(e) {
+        const value = Number(e.target.value)
+
+        if(!isNaN(value)) {
+            if(value < 1) {
+                index = 0
+            }
+            else if(value > $WordsStore.length) {
+                index = $WordsStore.length - 1
+            }
+            else {
+                index = value - 1
+            }
+        }
+    }
 </script>
 
 <div class="words-component" >
-    <div class="mode-swap" on:click={swapMode} >
-        <span class="mode-icon" ><IconSwap /></span>
+    <div class="mode-swap over" >
+        <span class="mode-icon" on:click={swapMode} ><IconSwap /></span>
     </div>
 
-    <div class="words" >
+    <div class="words over" >
         {#if $WordsStore.length > 0}
             <div class="word-container" >
                 <div class="word-card" on:click|self={changeMode} >
@@ -54,14 +71,19 @@
                 </div>
             </div>
         {/if}
-        
-        <div class="slide" >
-            <div on:click={previous} class="left" ></div>
-            <div on:click={next} class="right" ></div>
-        </div>
     </div>
-    
-    <SearchWord bind:word={searchedWord} />
+
+    <div class="pages over" > <input class="page-input" bind:value={currentPosition} on:input={selectPage} /> / {$WordsStore.length} </div>
+
+    <div class="over" >
+        <SearchWord bind:word={searchedWord} />
+    </div>
+
+
+    <div class="slide" >
+        <div on:click={previous} class="left" ></div>
+        <div on:click={next} class="right" ></div>
+    </div>
 </div>
 
 
@@ -88,8 +110,6 @@
 
     .word-card {
         background-color: white;
-        position: relative;
-        z-index: 10;
         border-radius: 1rem;
         width: 50vw;
         height: 50vw;
@@ -133,6 +153,24 @@
 
     .mode-icon:hover {
        cursor: pointer;
+    }
+
+    .pages {
+        text-align: center;
+        color: gray;
+    }
+
+    .page-input {
+        border: none;
+        border-bottom: 1px solid gray;
+        background-color: #242424;
+        text-align: center;
+        width: 25px;
+    }
+
+    .over {
+        position: relative;
+        z-index: 10;
     }
 
 </style>
