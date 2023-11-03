@@ -12,6 +12,13 @@
         word = $WordsStore.find(el => el[searchLanguage] === e.target.value.toLowerCase())
     }
 
+    function returWordWithMoreMeanings(e) {
+        let wordsContain = $WordsStore.filter(el => (el[searchLanguage].includes(e.target.value.toLowerCase()) && el[searchLanguage].includes(",")) )
+        if(!word && wordsContain.length === 1) {
+            word = wordsContain[0]
+        }
+    }
+
     function switchLanguage() {
         searchLanguage = searchLanguage === "english" ? "romaji" : "english"
         searchWord = ""
@@ -19,7 +26,7 @@
 </script>
 
 <div class="container" >
-    <input class="{word  && 'found'}" bind:value={searchWord} on:change={searchForWord} on:input={searchForWord} placeholder={searchLanguage} />
+    <input class="{word  && 'found'}" bind:value={searchWord} on:change={returWordWithMoreMeanings} on:input={searchForWord} placeholder={searchLanguage} />
 
     <div class="icon-container" on:click={switchLanguage} >
         <IconSwap />
