@@ -1,5 +1,5 @@
 <script>
-    import { ModuleStore } from "../stores";
+    import { ModuleStore, WordsStore } from "../stores";
     import HiraganaChart from "./HiraganaChart.svelte";
     import Home from "./Home.svelte";
     import Words from "./Words.svelte";
@@ -12,7 +12,7 @@
 {:else if $ModuleStore === "Hiragana Chart"}
     <HiraganaChart />
 {:else if $ModuleStore === "Words"}
-    <Words />
+    <Words words={$WordsStore} />
 {:else}
     <Home />
 {/if}

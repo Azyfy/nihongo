@@ -1,8 +1,9 @@
 <script>
-    import { WordsStore } from "../stores";
     import SearchWord from "./SearchWord.svelte";
     import Word from "./Word.svelte";
     import { IconEye, IconEyeSlash, IconSwap } from "./icons";
+
+    export let words = []
 
     let searchedWord = null
 
@@ -13,7 +14,7 @@
     let mode = japaneseMode
     let modeOption = mode
 
-    $: currentWord = searchedWord ? searchedWord : $WordsStore[index]
+    $: currentWord = searchedWord ? searchedWord : words[index]
 
     function previous() {
        if(index > 0) {
@@ -23,7 +24,7 @@
     }
 
     function next() {
-        if(index < $WordsStore.length - 1) {
+        if(index < words.length - 1) {
             index += 1
             resetMode()
         }
@@ -55,8 +56,8 @@
             if(value < 1) {
                 index = 0
             }
-            else if(value > $WordsStore.length) {
-                index = $WordsStore.length - 1
+            else if(value > words.length) {
+                index = words.length - 1
             }
             else {
                 index = value - 1
@@ -78,7 +79,7 @@
     </div>
 
     <div class="words over" >
-        {#if $WordsStore.length > 0}
+        {#if words.length > 0}
             <div class="word-container" >
                 <div class="word-card" on:click|self={changeMode} >
                     <Word word="{currentWord}" {mode} />
@@ -87,7 +88,7 @@
         {/if}
     </div>
 
-    <div class="pages over" > <input class="page-input" bind:value={currentPosition} on:input={selectPage} /> / {$WordsStore.length} </div>
+    <div class="pages over" > <input class="page-input" bind:value={currentPosition} on:input={selectPage} /> / {words.length} </div>
 
     <div class="over" >
         <SearchWord bind:word={searchedWord} />
