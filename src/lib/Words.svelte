@@ -144,6 +144,8 @@
     .words {
         height: 100%;
         position: relative;
+        border-radius: 1rem;
+        overflow: hidden;
     }
 
     .word-container {
