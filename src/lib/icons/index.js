@@ -2,5 +2,7 @@
 import IconSwap from "./IconSwap.svelte";
 import IconEye from "./IconEye.svelte";
 import IconEyeSlash from "./IconEyeSlash.svelte";
+import IconFire from "./IconFire.svelte";
+import IconCheckPlus from "./IconCheckPlus.svelte";
 
-export { IconSwap, IconEye, IconEyeSlash };
+export { IconSwap, IconEye, IconEyeSlash, IconFire, IconCheckPlus };

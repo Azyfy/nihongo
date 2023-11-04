@@ -1,14 +1,16 @@
 <script>
+  import { RepeatWordsStore } from "../stores";
     import SearchWord from "./SearchWord.svelte";
     import Word from "./Word.svelte";
-    import { IconEye, IconEyeSlash, IconSwap } from "./icons";
+    import { IconCheckPlus, IconEye, IconEyeSlash, IconFire, IconSwap } from "./icons";
 
     export let words = []
+    export let moduleName = "Words"
 
     let searchedWord = null
 
     let index = 0
-    $: currentPosition = index + 1
+    $: currentPosition = (words.length === 0) ? 0 : index + 1
 
     let japaneseMode = "hiragana"
     let mode = japaneseMode
@@ -49,6 +51,25 @@
         mode = modeOption
     }
 
+    function addToRepeatWords() {
+        if(!currentWord) return
+
+        const repeatWords = $RepeatWordsStore
+        if(!repeatWords.some(el => el.romaji === currentWord.romaji)) {
+            repeatWords.push(currentWord)
+            RepeatWordsStore.set(repeatWords)
+        }
+    }
+
+    function removeFromRepeatWords() {
+        if(!currentWord) return
+
+        const wordIndex = words.findIndex(el => el.id === currentWord.id)
+        words.splice(wordIndex, 1)
+        words = words
+        RepeatWordsStore.set(words)
+    }
+
     function selectPage(e) {
         const value = Number(e.target.value)
 
@@ -68,14 +89,23 @@
 
 <div class="words-component" >
     <div class="mode-options over" >
-        <span class="mode-icon" on:click={swapRomajiMode} >
-            {#if japaneseMode === "romaji"}
-                <IconEyeSlash></IconEyeSlash>
-            {:else}
-                <IconEye></IconEye>
+        <div>
+            {#if moduleName === "Words" && !!currentWord}
+                <span class="mode-icon" on:click={addToRepeatWords} > <IconFire></IconFire> </span>
+            {:else if moduleName === "Repeat Words" && !!currentWord}
+                <span class="mode-icon" on:click={removeFromRepeatWords} > <IconCheckPlus></IconCheckPlus> </span>
             {/if}
-        </span>
-        <span class="mode-icon" on:click={swapMode} ><IconSwap /></span>
+        </div>
+       <div class="icons-container" >
+            <span class="mode-icon" on:click={swapRomajiMode} >
+                {#if japaneseMode === "romaji"}
+                    <IconEyeSlash></IconEyeSlash>
+                {:else}
+                    <IconEye></IconEye>
+                {/if}
+            </span>
+            <span class="mode-icon" on:click={swapMode} ><IconSwap /></span>
+       </div>
     </div>
 
     <div class="words over" >
@@ -163,7 +193,12 @@
 
     .mode-options {
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .icons-container {
+        display: flex;
         gap: 1rem;
     }
 
