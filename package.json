@@ -7,10 +7,12 @@
     "dev": "vite",
     "develop": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-pwa-assets": "pwa-assets-generator"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.4.2",
+    "@vite-pwa/assets-generator": "^0.0.10",
     "svelte": "^4.0.5",
     "vite": "^4.4.5",
     "vite-plugin-pwa": "^0.16.7"
