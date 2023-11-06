@@ -38,11 +38,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 5px;
+        gap: 0.5rem;
     }
 
     input {
         text-align: center;
+        padding: 0.25rem;
     }
 
     .found {
@@ -50,8 +51,9 @@
     }
 
     .icon-container {
-        width: 20px;
-        height: 20px;
+        display: flex;
+        align-items: center;
+        font-size: 1.25rem;
     }
 
     .icon-container:hover {
