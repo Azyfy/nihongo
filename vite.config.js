@@ -12,9 +12,9 @@ export default defineConfig({
       devOptions: {
         enabled: false,
       },
-      workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
-      },
+      // workbox: {
+      //   globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+      // },
       includeAssets: ["favicon.ico", "apple-touch-icon.png"],
       manifest: {
         name: "Nihongo App",
