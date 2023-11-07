@@ -1,9 +1,9 @@
 <script>
     import { RepeatWordsStore } from "../stores";
-    import PageCount from "./PageCount.svelte";
-    import SearchWord from "./SearchWord.svelte";
-    import SlideNav from "./SlideNav.svelte";
-    import Word from "./Word.svelte";
+    import PageCount from "./components/PageCount.svelte";
+    import SearchWord from "./components/SearchWord.svelte";
+    import SlideNav from "./components/SlideNav.svelte";
+    import Word from "./components/Word.svelte";
     import { IconCheckPlus, IconEye, IconEyeSlash, IconFire, IconSwap } from "./icons";
 
     export let words = []

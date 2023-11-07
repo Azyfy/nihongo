@@ -1,6 +1,6 @@
 <script>
-  import { RepeatWordsStore } from "../stores";
-    import ModuleButton from "./ModuleButton.svelte";
+    import { RepeatWordsStore } from "../stores";
+    import ModuleButton from "./components/ModuleButton.svelte";
 
 </script>
 

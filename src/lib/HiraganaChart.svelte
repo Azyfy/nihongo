@@ -1,5 +1,5 @@
 <script>
-    import Hiragana from "./Hiragana.svelte";
+    import Hiragana from "./components/Hiragana.svelte";
     import { CHART } from "../constants/letters";
 </script>
 
