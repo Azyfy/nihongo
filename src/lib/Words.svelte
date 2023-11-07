@@ -1,5 +1,6 @@
 <script>
-  import { RepeatWordsStore } from "../stores";
+    import { RepeatWordsStore } from "../stores";
+    import PageCount from "./PageCount.svelte";
     import SearchWord from "./SearchWord.svelte";
     import Word from "./Word.svelte";
     import { IconCheckPlus, IconEye, IconEyeSlash, IconFire, IconSwap } from "./icons";
@@ -10,7 +11,6 @@
     let searchedWord = null
 
     let index = 0
-    $: currentPosition = (words.length === 0) ? 0 : index + 1
 
     let japaneseMode = "hiragana"
     let mode = japaneseMode
@@ -69,22 +69,6 @@
         words = words
         RepeatWordsStore.set(words)
     }
-
-    function selectPage(e) {
-        const value = Number(e.target.value)
-
-        if(!isNaN(value)) {
-            if(value < 1) {
-                index = 0
-            }
-            else if(value > words.length) {
-                index = words.length - 1
-            }
-            else {
-                index = value - 1
-            }
-        }
-    }
 </script>
 
 <div class="words-component" >
@@ -118,7 +102,7 @@
         {/if}
     </div>
 
-    <div class="pages over" > <input class="page-input" bind:value={currentPosition} on:input={selectPage} /> / {words.length} </div>
+    <PageCount bind:index={index} length={words.length} />
 
     <div class="over" >
         <SearchWord bind:word={searchedWord} />
@@ -207,19 +191,6 @@
 
     .mode-icon:hover {
        cursor: pointer;
-    }
-
-    .pages {
-        text-align: center;
-        color: gray;
-    }
-
-    .page-input {
-        border: none;
-        border-bottom: 1px solid gray;
-        background-color: #242424;
-        text-align: center;
-        width: 25px;
     }
 
     .over {
