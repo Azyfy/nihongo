@@ -22,7 +22,7 @@ function selectPage(e) {
     }
 </script>
 
-<div class="pages over" > <input class="page-input" bind:value={currentPosition} on:input={selectPage} /> / {length} </div>
+<div class="pages over" > <input class="page-input" bind:value={currentPosition} on:input={selectPage} on:change={selectPage} /> / {length} </div>
 
 <style>
     .pages {
@@ -35,7 +35,7 @@ function selectPage(e) {
         border-bottom: 1px solid gray;
         background-color: #242424;
         text-align: center;
-        width: 25px;
+        width: 2rem;
     }
 
     .over {
