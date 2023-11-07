@@ -1,6 +1,6 @@
 <script>
     import { WordsStore } from "../stores";
-    import { IconSwap } from "./icons";
+    import { IconMagicWand, IconSwap } from "./icons";
 
     export let word = null
 
@@ -23,27 +23,37 @@
         searchLanguage = searchLanguage === "english" ? "romaji" : "english"
         searchWord = ""
     }
+
+    function clearInput() {
+        searchWord = ""  
+    }
 </script>
 
-<div class="container" >
+<div class="search-container" >
     <input class="{word  && 'found'}" bind:value={searchWord} on:change={returWordWithMoreMeanings} on:input={searchForWord} placeholder={searchLanguage} />
 
-    <div class="icon-container" on:click={switchLanguage} >
-        <IconSwap />
+    <div class="icon-container">
+        <span on:click={clearInput} ><IconMagicWand /></span>
+        <span on:click={switchLanguage} ><IconSwap /></span>
     </div>
 </div>
 
 <style>
-    .container {
+    .search-container {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 0.5rem;
+        padding: 0.25rem;
+        border: 1px solid gray;
+        border-radius: 0.25rem;
+        background-color: #2b2a33;
+        color: rgb(235, 235, 235);
     }
 
     input {
         text-align: center;
-        padding: 0.25rem;
+        border: none;
     }
 
     .found {
@@ -53,11 +63,17 @@
     .icon-container {
         display: flex;
         align-items: center;
+        gap: 0.5rem;
         font-size: 1.25rem;
     }
 
-    .icon-container:hover {
+    .icon-container > span:hover {
         cursor: pointer;
+    }
+
+    .icon-container > span {
+       display: flex;
+       align-items: center;
     }
 
 </style>
