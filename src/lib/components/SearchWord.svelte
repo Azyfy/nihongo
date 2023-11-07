@@ -22,10 +22,12 @@
     function switchLanguage() {
         searchLanguage = searchLanguage === "english" ? "romaji" : "english"
         searchWord = ""
+        word = null
     }
 
     function clearInput() {
-        searchWord = ""  
+        searchWord = ""
+        word = null
     }
 </script>
 
