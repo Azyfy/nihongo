@@ -55,6 +55,7 @@
         text-align: center;
         border: none;
         background-color: transparent;
+        width: 100%;
     }
 
     .found {
