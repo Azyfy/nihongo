@@ -2,6 +2,7 @@
     import { RepeatWordsStore } from "../stores";
     import PageCount from "./PageCount.svelte";
     import SearchWord from "./SearchWord.svelte";
+  import SlideNav from "./SlideNav.svelte";
     import Word from "./Word.svelte";
     import { IconCheckPlus, IconEye, IconEyeSlash, IconFire, IconSwap } from "./icons";
 
@@ -19,20 +20,6 @@
     let showBurnIcon = true
 
     $: currentWord = searchedWord ? searchedWord : words[index]
-
-    function previous() {
-       if(index > 0) {
-        index -= 1
-        resetMode()
-       }
-    }
-
-    function next() {
-        if(index < words.length - 1) {
-            index += 1
-            resetMode()
-        }
-    }
 
     function changeMode() {
         mode = mode === "english" ? japaneseMode : "english"
@@ -121,10 +108,7 @@
     </div>
 
 
-    <div class="slide" >
-        <div on:click={previous} class="left" ></div>
-        <div on:click={next} class="right" ></div>
-    </div>
+    <SlideNav bind:index={index} bind:length={words.length} resetMode={resetMode} />
 </div>
 
 
@@ -167,26 +151,6 @@
 
     .word-card::-webkit-scrollbar {
         width: 0; /* Chrome, Safari */
-    }
-
-    .slide {
-        position: absolute;
-        display: flex;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-       
-    }
-
-    .left {
-        height: 90%;
-        width: 50%;
-    }
-
-    .right {
-        height: 90%;
-        width: 50%;
     }
 
     .mode-options {
