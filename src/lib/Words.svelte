@@ -60,6 +60,10 @@
         words.splice(wordIndex, 1)
         words = words
         RepeatWordsStore.set(words)
+
+        if(index + 1 > words.length) {
+            index -= 1
+        }
     }
 
     function isInRepeatWords() {
