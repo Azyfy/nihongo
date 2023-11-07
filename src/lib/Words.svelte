@@ -16,6 +16,8 @@
     let mode = japaneseMode
     let modeOption = mode
 
+    let showBurnIcon = true
+
     $: currentWord = searchedWord ? searchedWord : words[index]
 
     function previous() {
@@ -49,6 +51,7 @@
 
     function resetMode() {
         mode = modeOption
+        showBurnIcon = true
     }
 
     function addToRepeatWords() {
@@ -58,6 +61,8 @@
         if(!repeatWords.some(el => el.romaji === currentWord.romaji)) {
             repeatWords.push(currentWord)
             RepeatWordsStore.set(repeatWords)
+
+            showBurnIcon = false
         }
     }
 
@@ -69,12 +74,19 @@
         words = words
         RepeatWordsStore.set(words)
     }
+
+    function isInRepeatWords() {
+        if(moduleName === "Words") {
+            return $RepeatWordsStore.includes(currentWord)
+        }
+        return false
+    }
 </script>
 
 <div class="words-component" >
     <div class="mode-options over" >
         <div>
-            {#if moduleName === "Words" && !!currentWord}
+            {#if moduleName === "Words" && !!currentWord && !isInRepeatWords() && showBurnIcon}
                 <span class="mode-icon" on:click={addToRepeatWords} > <IconFire></IconFire> </span>
             {:else if moduleName === "Repeat Words" && !!currentWord}
                 <span class="mode-icon" on:click={removeFromRepeatWords} > <IconCheckPlus></IconCheckPlus> </span>
