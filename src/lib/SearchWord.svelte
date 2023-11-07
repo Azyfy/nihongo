@@ -54,6 +54,7 @@
     input {
         text-align: center;
         border: none;
+        background-color: transparent;
     }
 
     .found {
