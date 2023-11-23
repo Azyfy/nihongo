@@ -18,8 +18,7 @@
     }
 </script>
 
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div class="image-container" on:mouseenter={showLetter} on:mouseleave={hideLetter} >
+    <div class="image-container" on:mouseenter={showLetter} on:mouseleave={hideLetter} role="region">
         {#if show}
         <div class="letter-container {dark}" >
             <p>{finalLetter}</p>

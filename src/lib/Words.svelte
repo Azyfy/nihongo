@@ -74,6 +74,7 @@
     }
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 <div class="words-component" >
     <div class="mode-options over" >
         <div>

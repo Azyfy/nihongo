@@ -18,6 +18,7 @@
     }
 </script>
 
+ <!-- svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 <div class="slide" >
     <div on:click={previous} class="left" ></div>
     <div on:click={next} class="right" ></div>
