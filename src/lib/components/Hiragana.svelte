@@ -4,8 +4,10 @@
     export let dark = ""
 
     let show = false
+    $: isSmallLetter = letter.includes("_")
+    $: finalLetter = isSmallLetter ? letter.slice(1) : letter
     
-    $: src = `images/hiragana/${letter.toLowerCase()}.png`
+    $: src = `images/hiragana/${finalLetter.toLowerCase()}.png`
 
     function showLetter() {
         show = true
@@ -20,11 +22,13 @@
     <div class="image-container" on:mouseenter={showLetter} on:mouseleave={hideLetter} >
         {#if show}
         <div class="letter-container {dark}" >
-            <p>{letter}</p>
+            <p>{finalLetter}</p>
         </div>
         {/if}
 
-        <img {src} alt={letter}  />
+        <div class="img-container" >
+            <img class="{isSmallLetter && 'small'}" {src} alt={finalLetter}  />
+        </div>   
 
         {#if bg}
             <div class="background-light" ></div>
@@ -49,6 +53,17 @@
     img {
         width: 100%;
         height: 100%;
+    }
+
+    .small {
+        align-self: flex-end;
+        height: 70%;
+    }
+
+    .img-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .image-container {
