@@ -5,6 +5,7 @@ import IconEyeSlash from "./IconEyeSlash.svelte";
 import IconFire from "./IconFire.svelte";
 import IconCheckPlus from "./IconCheckPlus.svelte";
 import IconMagicWand from "./IconMagicWand.svelte";
+import IconCaret from "./IconCaret.svelte";
 
 export {
   IconSwap,
@@ -13,4 +14,5 @@ export {
   IconFire,
   IconCheckPlus,
   IconMagicWand,
+  IconCaret,
 };
