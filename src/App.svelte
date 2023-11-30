@@ -20,23 +20,30 @@
   });
 </script>
 
-<main>
-  <Layout />
-</main>
-
-{#if $ModuleStore !== "Home"}
-  <Nav />
-{/if}
+<div class="layout-container" >
+  <main>
+    <Layout />
+  </main>
+  
+  {#if $ModuleStore !== "Home"}
+    <Nav />
+  {/if}
+</div>
 
 <style>
   main {
     box-sizing: border-box;
-    height: 90vh;
     padding: 2rem;
     overflow: hidden;
     overflow-y: auto;
     display: flex;
     justify-content: center;
     gap: 1rem;
+  }
+
+  .layout-container {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 3rem;
   }
 </style>

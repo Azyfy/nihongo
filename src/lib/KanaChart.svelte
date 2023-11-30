@@ -3,7 +3,7 @@
     import { CHART } from "../constants/letters";
     import { ModuleStore } from "../stores";
 
-    let kana = $ModuleStore === "Katakana" ? 'katakana' : 'hiragana'
+    $: kana = $ModuleStore === "Katakana" ? 'katakana' : 'hiragana'
 </script>
 
 <div class="chart-container" >
