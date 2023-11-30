@@ -1,6 +1,9 @@
 <script>
     import Kana from "./components/Kana.svelte";
     import { CHART } from "../constants/letters";
+    import { ModuleStore } from "../stores";
+
+    let kana = $ModuleStore === "Katakana" ? 'katakana' : 'hiragana'
 </script>
 
 <div class="chart-container" >
@@ -8,7 +11,7 @@
         <div class="chart-row" >
             {#each array as letter}
                 {#if letter}
-                    <Kana letter="{letter}" bg="{true}" />
+                    <Kana letter="{letter}" {kana} bg="{true}" />
                 {:else}
                     <div class="empty" ></div>
                 {/if}

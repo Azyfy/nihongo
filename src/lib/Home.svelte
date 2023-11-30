@@ -7,7 +7,7 @@
 <div class="module-btn-container" >
     <CharacterImageLoader />
 
-    <ModuleButton moduleName="Hiragana Chart" />
+    <ModuleButton moduleName="Kana Chart" />
     <ModuleButton moduleName="Words" />
     {#if $RepeatWordsStore.length > 0 }
         <ModuleButton moduleName="Repeat Words" />
