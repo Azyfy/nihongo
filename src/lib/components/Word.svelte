@@ -1,5 +1,5 @@
 <script>
-    import Hiragana from "./Hiragana.svelte";
+    import Kana from "./Kana.svelte";
 
     export let word 
     export let mode = "hiragana"
@@ -11,7 +11,7 @@
     <div class="word-container" >
         {#if mode === "hiragana"}
             {#each romajiWord  as romaji}
-                <Hiragana letter={romaji} dark="dark" />
+                <Kana letter={romaji} dark="dark" />
             {/each}
         {:else if mode === "english"}
             <p>{word.english}</p>

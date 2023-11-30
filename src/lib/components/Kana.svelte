@@ -1,5 +1,6 @@
 <script>
     export let letter
+    export let kana = "hiragana"
     export let bg = false 
     export let dark = ""
 
@@ -7,7 +8,7 @@
     $: isSmallLetter = letter.includes("_")
     $: finalLetter = isSmallLetter ? letter.slice(1) : letter
     
-    $: src = `images/hiragana/${finalLetter.toLowerCase()}.png`
+    $: src = `images/${kana}/${finalLetter.toLowerCase()}.png`
 
     function showLetter() {
         show = true

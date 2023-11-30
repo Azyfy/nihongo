@@ -1,5 +1,5 @@
 <script>
-    import Hiragana from "./components/Hiragana.svelte";
+    import Kana from "./components/Kana.svelte";
     import { CHART } from "../constants/letters";
 </script>
 
@@ -8,7 +8,7 @@
         <div class="chart-row" >
             {#each array as letter}
                 {#if letter}
-                    <Hiragana letter="{letter}" bg="{true}" />
+                    <Kana letter="{letter}" bg="{true}" />
                 {:else}
                     <div class="empty" ></div>
                 {/if}
