@@ -9,9 +9,9 @@
 
 {#if word}
     <div class="word-container" >
-        {#if mode === "hiragana"}
+        {#if mode === "hiragana" || mode === "katakana"}
             {#each romajiWord  as romaji}
-                <Kana letter={romaji} dark="dark" />
+                <Kana letter={romaji} kana={mode} dark="dark" />
             {/each}
         {:else if mode === "english"}
             <p>{word.english}</p>

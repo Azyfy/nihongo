@@ -4,7 +4,7 @@
     import SearchWord from "./components/SearchWord.svelte";
     import SlideNav from "./components/SlideNav.svelte";
     import Word from "./components/Word.svelte";
-    import { IconCheckPlus, IconEye, IconEyeSlash, IconFire, IconSwap } from "./icons";
+    import { IconCheckPlus, IconEye, IconEyeSlash, IconFire, IconKana, IconSwap } from "./icons";
 
     export let words = []
     export let moduleName = "Words"
@@ -15,6 +15,7 @@
 
     let japaneseMode = "hiragana"
     let mode = japaneseMode
+    let kanaOption = "hiragana"
     let modeOption = mode
 
     let showBurnIcon = true
@@ -31,7 +32,7 @@
     }
 
     function swapRomajiMode() {
-        japaneseMode = japaneseMode === "romaji" ? "hiragana" : "romaji"
+        japaneseMode = japaneseMode === "romaji" ? kanaOption : "romaji"
         modeOption = japaneseMode
         mode = japaneseMode
     }
@@ -72,6 +73,13 @@
         }
         return false
     }
+
+    function toggleKana() {
+        kanaOption = kanaOption === "hiragana" ? "katakana" : "hiragana"
+        japaneseMode = japaneseMode === "romaji" ? "romaji" : kanaOption
+        modeOption = japaneseMode
+        mode = japaneseMode
+    }
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
@@ -85,6 +93,7 @@
             {/if}
         </div>
        <div class="icons-container" >
+            <span class="mode-icon" on:click={toggleKana} > <IconKana kana={kanaOption} /> </span>
             <span class="mode-icon" on:click={swapRomajiMode} >
                 {#if japaneseMode === "romaji"}
                     <IconEyeSlash></IconEyeSlash>

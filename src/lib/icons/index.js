@@ -8,6 +8,7 @@ import IconMagicWand from "./IconMagicWand.svelte";
 import IconCaret from "./IconCaret.svelte";
 import IconSearch from "./IconSearch.svelte";
 import IconHome from "./IconHome.svelte";
+import IconKana from "./IconKana.svelte";
 
 export {
   IconSwap,
@@ -19,4 +20,5 @@ export {
   IconCaret,
   IconSearch,
   IconHome,
+  IconKana,
 };
