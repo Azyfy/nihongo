@@ -6,9 +6,13 @@
 
     let show = false
     $: isSmallLetter = letter.includes("_")
-    $: finalLetter = isSmallLetter ? letter.slice(1) : letter
+    $: isProlongedSound = letter.includes("-")
+    $: finalLetter = isSmallLetter || isProlongedSound ? letter.slice(1) : letter
     
-    $: src = `images/${kana}/${finalLetter.toLowerCase()}.png`
+    $: folderName = isProlongedSound && kana === "katakana"  ? "marks" : kana
+    $: pngName = isProlongedSound && kana === "katakana"  ? "-" : finalLetter.toLowerCase()
+
+    $: src = `images/${folderName}/${pngName}.png`
 
     function showLetter() {
         show = true
