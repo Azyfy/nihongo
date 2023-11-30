@@ -3,14 +3,13 @@
     import { CHART } from "../../constants/letters";
 
     onMount(async () => {
-        const flatten = CHART.map(set => {
-            return set.map(char => {
-                if(char) {
-                    return `images/hiragana/${char}.png`
-                }
-            })
-        }).flat()
+        const flattenH = getFlatSet("hiragana")
+        const flattenK = getFlatSet("katakana")
 
+        const marks = ["images/marks/-.png"]
+
+        const flatten = [...flattenH, ...flattenK, ...marks]
+        
         const images = flatten.filter(img => img)
 
         try {
@@ -27,5 +26,15 @@
                 img.onerror = reject;
                 img.src = src;
         });
+    }
+
+    function getFlatSet(kana) {
+        return CHART.map(set => {
+            return set.map(char => {
+                if(char) {
+                    return `images/${kana}/${char}.png`
+                }
+            })
+        }).flat()
     }
 </script>
