@@ -7,6 +7,7 @@ import IconCheckPlus from "./IconCheckPlus.svelte";
 import IconMagicWand from "./IconMagicWand.svelte";
 import IconCaret from "./IconCaret.svelte";
 import IconSearch from "./IconSearch.svelte";
+import IconHome from "./IconHome.svelte";
 
 export {
   IconSwap,
@@ -17,4 +18,5 @@ export {
   IconMagicWand,
   IconCaret,
   IconSearch,
+  IconHome,
 };
