@@ -11,11 +11,11 @@
     let showSearch = false
 
     function searchForWord(e) {
-        word = $WordsStore.find(el => el[searchLanguage] === e.target.value.toLowerCase())
+        word = $WordsStore.find(el => el[searchLanguage].toLowerCase() === e.target.value.toLowerCase())
     }
 
     function returWordWithMoreMeanings(e) {
-        let wordsContain = $WordsStore.filter(el => (el[searchLanguage].includes(e.target.value.toLowerCase()) && el[searchLanguage].includes(",")) )
+        let wordsContain = $WordsStore.filter(el => (el[searchLanguage].toLowerCase().includes(e.target.value.toLowerCase()) && el[searchLanguage].includes(",")) )
         if(!word && wordsContain.length === 1) {
             word = wordsContain[0]
         }
@@ -57,6 +57,7 @@
     .search-container {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
     }
     .search-container-inner {
