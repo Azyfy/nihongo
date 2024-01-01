@@ -96,12 +96,18 @@
             <span class="mode-icon" on:click={toggleKana} > <IconKana kana={kanaOption} /> </span>
             <span class="mode-icon" on:click={swapRomajiMode} >
                 {#if japaneseMode === "romaji"}
-                    <IconEyeSlash></IconEyeSlash>
+                    <IconSwap />
                 {:else}
-                    <IconEye></IconEye>
+                    <IconSwap />
                 {/if}
             </span>
-            <span class="mode-icon" on:click={swapMode} ><IconSwap /></span>
+            <span class="mode-icon" on:click={swapMode} >
+                {#if modeOption === "english"}
+                    <IconEyeSlash />
+                {:else}
+                    <IconEye />
+                {/if}
+            </span>
        </div>
     </div>
 
