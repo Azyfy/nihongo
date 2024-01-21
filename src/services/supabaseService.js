@@ -4,8 +4,8 @@ export async function getAllWords() {
   const { data, error } = await supabase.from("words").select();
 
   if (error) {
-    console.log("Error:", error);
-    return [];
+    console.log("DB Error:", error);
+    return null;
   }
 
   return data;

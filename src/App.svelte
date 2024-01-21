@@ -1,10 +1,11 @@
 <script>
   import { onMount } from "svelte";
 
-  import { ModuleStore, WordsStore } from "./stores";
-  import { getAllWords } from "./services/supabaseService";
-  import Nav from "./lib/components/Nav.svelte";
+  import { initData } from "./services/service";
 
+  import { ModuleStore } from "./stores";
+ 
+  import Nav from "./lib/components/Nav.svelte";
   import Layout from "./lib/Layout.svelte";
 
   // Disabling the browser back button since the app doesnt use routes
@@ -15,8 +16,7 @@
   });
 
   onMount(async () => {
-    const data = await getAllWords()
-    WordsStore.set(data)
+    initData()
   });
 </script>
 

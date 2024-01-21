@@ -10,22 +10,18 @@ export function initDB() {
 
   request.onsuccess = (event) => {
     db = request.result;
-    // db.onclose = () => {
-
-    // }
   };
 
   request.onupgradeneeded = (event) => {
     const db = request.result;
 
     // Create an objectStore for this database
-    createObjectStore("words");
+    createObjectStore(db, "words");
+    createObjectStore(db, "repeatWords");
   };
 }
 
-function createObjectStore(store) {
-  if (!db) return;
-
+function createObjectStore(db, store) {
   const objectStore = db.createObjectStore(store, { keyPath: "id" });
 
   objectStore.createIndex("english", "english", { unique: false });

@@ -4,6 +4,7 @@
     import SearchWord from "./components/SearchWord.svelte";
     import SlideNav from "./components/SlideNav.svelte";
     import Word from "./components/Word.svelte";
+    import {addToIDB, deleteFromIDB} from "../services/indexedDBService"
     import { IconCheckPlus, IconEye, IconEyeSlash, IconFire, IconKana, IconSwap } from "./icons";
 
     export let words = []
@@ -46,9 +47,12 @@
         if(!currentWord) return
 
         const repeatWords = $RepeatWordsStore
+
         if(!repeatWords.some(el => el.romaji === currentWord.romaji)) {
             repeatWords.push(currentWord)
             RepeatWordsStore.set(repeatWords)
+
+            addToIDB(currentWord, "repeatWords")
 
             showBurnIcon = false
         }
@@ -62,6 +66,8 @@
         words = words
         RepeatWordsStore.set(words)
 
+        deleteFromIDB(currentWord.id, "repeatWords")
+
         if(index + 1 > words.length) {
             index -= 1
         }
@@ -69,7 +75,7 @@
 
     function isInRepeatWords() {
         if(moduleName === "Words") {
-            return $RepeatWordsStore.includes(currentWord)
+            return $RepeatWordsStore.some(el => el.id === currentWord.id)
         }
         return false
     }
