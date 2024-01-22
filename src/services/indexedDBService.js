@@ -1,4 +1,5 @@
-// const request = window.indexedDB.open("MyTestDatabase", 3);
+import CollectionsStore from "../stores/CollectionsStore";
+
 let db = null;
 
 export function initDB() {
@@ -18,6 +19,7 @@ export function initDB() {
     // Create an objectStore for this database
     createObjectStore(db, "words");
     createObjectStore(db, "repeatWords");
+    createWordsCollectionsStore(db);
   };
 }
 
@@ -26,6 +28,12 @@ function createObjectStore(db, store) {
 
   objectStore.createIndex("english", "english", { unique: false });
   objectStore.createIndex("romaji", "romaji", { unique: true });
+}
+
+function createWordsCollectionsStore(db) {
+  db.createObjectStore("collections", {
+    keyPath: "collectionName",
+  });
 }
 
 function transactionObjectStore(store) {
@@ -37,7 +45,7 @@ function transactionObjectStore(store) {
   return objectStore;
 }
 
-// get
+// get/set
 
 export function setAllFromIDB(store, setFunc) {
   if (!db) return;
@@ -54,6 +62,12 @@ export function setAllFromIDB(store, setFunc) {
   request.onsuccess = () => {
     setFunc(request.result);
   };
+}
+
+export function setIDBWordCollections(setFunc) {
+  if (!db) return;
+
+  setAllFromIDB("collections", setFunc);
 }
 
 export function getIDBStoreNames() {
@@ -76,6 +90,25 @@ export function addCollectionToIDB(data, store) {
   });
 }
 
+export function createIDBCollection(collectionName) {
+  if (!db) return;
+
+  const objectStore = transactionObjectStore("collections");
+
+  const newCollection = {
+    collectionName,
+    words: [],
+  };
+
+  objectStore.add(newCollection);
+
+  CollectionsStore.update((stores) => {
+    return [...stores, newCollection];
+  });
+}
+
+export function addToCllection() {}
+
 // del
 
 export function deleteFromIDB(id, store) {
@@ -84,4 +117,16 @@ export function deleteFromIDB(id, store) {
   const objectStore = transactionObjectStore(store);
 
   objectStore.delete(id);
+}
+
+export function deleteIDBCollection(collectionName) {
+  if (!db) return;
+
+  const objectStore = transactionObjectStore("collections");
+
+  objectStore.delete(collectionName);
+
+  CollectionsStore.update((stores) =>
+    stores.filter((el) => el.collectionName !== collectionName)
+  );
 }

@@ -3,7 +3,7 @@
     import KanaChart from "./KanaChart.svelte";
     import Home from "./Home.svelte";
     import Words from "./Words.svelte";
-
+    import Collections from "./Collections.svelte"
 </script>
 
 
@@ -13,6 +13,8 @@
     <KanaChart />
 {:else if $ModuleStore === "Words"}
     <Words words={$WordsStore} />
+{:else if $ModuleStore === "Collections"}
+    <Collections />
 {:else if $ModuleStore === "Repeat Words"}
     <Words words={$RepeatWordsStore} moduleName={$ModuleStore} />
 {:else}

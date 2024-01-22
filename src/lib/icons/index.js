@@ -9,6 +9,8 @@ import IconCaret from "./IconCaret.svelte";
 import IconSearch from "./IconSearch.svelte";
 import IconHome from "./IconHome.svelte";
 import IconKana from "./IconKana.svelte";
+import IconFilePlus from "./IconFilePlus.svelte";
+import IconTrash from "./IconTrash.svelte";
 
 export {
   IconSwap,
@@ -21,4 +23,6 @@ export {
   IconSearch,
   IconHome,
   IconKana,
+  IconFilePlus,
+  IconTrash,
 };

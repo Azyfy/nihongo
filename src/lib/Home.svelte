@@ -9,6 +9,7 @@
 
     <ModuleButton moduleName="Kana Chart" />
     <ModuleButton moduleName="Words" />
+    <ModuleButton moduleName="Collections" />
     {#if $RepeatWordsStore.length > 0 }
         <ModuleButton moduleName="Repeat Words" />
     {/if}
