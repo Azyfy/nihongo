@@ -1,6 +1,8 @@
 <script>
     import {IconTrash} from "../icons"
     import {deleteIDBCollection} from "../../services/indexedDBService"
+    import CurrentCollectionStore from "../../stores/CurrentCollectionStore";
+    import { ModuleStore } from "../../stores";
 
     export let collection
 
@@ -19,12 +21,19 @@
         isModalOpen = false
     }
 
+    function openCollection() {
+        CurrentCollectionStore.set(collection)
+        ModuleStore.set("Collection")
+    }
+
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
-<div class="collections" >
+<div class="collections"  >
     <div on:click={openModal} class="del" ><IconTrash /></div>
-    <p>{collection.collectionName}</p>
+    <div on:click={openCollection} class="collection" >
+        <p>{collection.collectionName}</p>
+    </div>
 
     {#if isModalOpen}
         <div class="modal" >
@@ -75,6 +84,15 @@
         justify-content: center;
         background-color: white;
         gap: 5px;
+    }
+
+    .collection {
+        width: 80%;
+        text-align: center;
+    }
+
+    .collection:hover {
+        cursor: pointer;
     }
 
 </style>

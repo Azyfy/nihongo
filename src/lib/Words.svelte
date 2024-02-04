@@ -1,11 +1,13 @@
 <script>
-    import { RepeatWordsStore } from "../stores";
+    import { CollectionsStore, RepeatWordsStore } from "../stores";
     import PageCount from "./components/PageCount.svelte";
     import SearchWord from "./components/SearchWord.svelte";
     import SlideNav from "./components/SlideNav.svelte";
     import Word from "./components/Word.svelte";
     import {addToIDB, deleteFromIDB} from "../services/indexedDBService"
     import { IconCheckPlus, IconEye, IconEyeSlash, IconFire, IconKana, IconSwap } from "./icons";
+    import IconCirclePlus from "./icons/IconCirclePlus.svelte";
+    import CollectionPicker from "./components/CollectionPicker.svelte";
 
     export let words = []
     export let moduleName = "Words"
@@ -20,6 +22,8 @@
     let modeOption = mode
 
     let showBurnIcon = true
+
+    let isCollectionPickerOpen = false
 
     $: currentWord = searchedWord ? searchedWord : words[index]
 
@@ -86,16 +90,24 @@
         modeOption = japaneseMode
         mode = japaneseMode
     }
+
+    function openCollectionPicker() {
+        isCollectionPickerOpen = true
+    }
+
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 <div class="words-component" >
     <div class="mode-options over" >
         <div>
-            {#if moduleName === "Words" && !!currentWord && !isInRepeatWords() && showBurnIcon}
+            {#if (moduleName === "Words" || moduleName === "Collection") && !!currentWord && !isInRepeatWords() && showBurnIcon}
                 <span class="mode-icon" on:click={addToRepeatWords} > <IconFire></IconFire> </span>
             {:else if moduleName === "Repeat Words" && !!currentWord}
                 <span class="mode-icon" on:click={removeFromRepeatWords} > <IconCheckPlus></IconCheckPlus> </span>
+            {/if}
+            {#if moduleName === "Words"  }
+                <span class="mode-icon" on:click={openCollectionPicker} > <IconCirclePlus></IconCirclePlus> </span>
             {/if}
         </div>
        <div class="icons-container" >
@@ -126,6 +138,8 @@
             </div>
         {/if}
     </div>
+
+    <CollectionPicker bind:isCollectionPickerOpen {currentWord} ></CollectionPicker>
 
     <PageCount bind:index={index} length={words.length} />
 

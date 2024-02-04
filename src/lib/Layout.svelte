@@ -4,6 +4,7 @@
     import Home from "./Home.svelte";
     import Words from "./Words.svelte";
     import Collections from "./Collections.svelte"
+    import CurrentCollectionStore from "../stores/CurrentCollectionStore";
 </script>
 
 
@@ -15,6 +16,8 @@
     <Words words={$WordsStore} />
 {:else if $ModuleStore === "Collections"}
     <Collections />
+{:else if $ModuleStore === "Collection"}
+    <Words words={$CurrentCollectionStore.words} moduleName={$ModuleStore} />
 {:else if $ModuleStore === "Repeat Words"}
     <Words words={$RepeatWordsStore} moduleName={$ModuleStore} />
 {:else}

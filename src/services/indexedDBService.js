@@ -107,7 +107,24 @@ export function createIDBCollection(collectionName) {
   });
 }
 
-export function addToCllection() {}
+// update
+
+export function addToCllection(collection) {
+  if (!db) return;
+
+  const objectStore = transactionObjectStore("collections");
+
+  objectStore.put(collection);
+
+  CollectionsStore.update((stores) => {
+    const store = stores.find(
+      (store) => store.collectionName === collection.collectionName
+    );
+    store.words = [...collection.words];
+
+    return stores;
+  });
+}
 
 // del
 
